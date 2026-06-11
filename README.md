@@ -34,6 +34,7 @@ A simulation of the BB84 QKD protocol, first introduced by Bennett and Brassard 
 | File | Description |
 |------|-------------|
 | `BB84_Protocol.ipynb` | Jupyter Notebook with full explanation and simulation |
+| `bb84_protocol.py`  | Standalone Python script |
 | `run_bb84.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
 
 ### Quick Start
