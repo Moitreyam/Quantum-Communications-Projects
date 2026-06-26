@@ -34,7 +34,7 @@ A simulation of the BB84 QKD protocol, first introduced by Bennett and Brassard 
 | File | Description |
 |------|-------------|
 | `BB84_Protocol.ipynb` | Jupyter Notebook with full explanation and simulation |
-| `bb84_protocol.py`  | Standalone Python script |
+| `bb84_protocol.py` | Standalone Python script |
 | `run_bb84.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
 
 ### Quick Start
@@ -73,6 +73,71 @@ Eve detected! Key compromised. Abort!
 
 ---
 
+## Quantum Teleportation Protocol
+
+A simulation of the Quantum Teleportation protocol, which allows Alice to transfer an unknown quantum state to Bob using a shared entangled pair and two classical bits of communication — without physically transmitting the qubit.
+
+### How It Works
+
+1. Alice and Bob share an **entangled Bell pair** (created using H + CNOT gates)
+2. Alice performs a **Bell measurement** (CNOT + H, then measure) on her original qubit and her half of the entangled pair — this destroys her original state
+3. Alice sends the **two classical bits** from her measurement to Bob
+4. Bob applies **correction gates** (X for bit flip, Z for phase flip) based on Alice's bits to recover the original state
+
+### Key Concepts
+
+- Entanglement as a shared resource between distant parties
+- Bell measurement to extract relationship information
+- Classical communication is essential — without it, Bob has random noise
+- No-cloning theorem: Alice's state is destroyed, not copied
+- Nothing travels faster than light — teleportation requires classical bits
+
+### Features
+
+- Teleportation of superposition state — verifies 50/50 corrected output
+- Teleportation of definitive state |1⟩ — proves protocol with 100% corrected output
+- Post-selection analysis with classical correction
+- Circuit visualization
+
+### Files
+
+| File | Description |
+|------|-------------|
+| `Quantum_Teleportation.ipynb` | Jupyter Notebook with full explanation and simulation |
+| `quantum_teleportation.py` | Standalone Python script |
+| `run_teleportation.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
+
+### Quick Start
+
+**Option 1: Jupyter Notebook**
+```
+pip install qiskit qiskit-aer
+jupyter notebook Quantum_Teleportation.ipynb
+```
+
+**Option 2: Command Line**
+```
+pip install qiskit qiskit-aer
+python quantum_teleportation.py
+```
+
+**Option 3: One-Click (Windows)**
+
+Download `quantum_teleportation.py` and `run_teleportation.bat` into the same folder, then double-click `run_teleportation.bat`.
+
+### Sample Output
+
+**Teleporting definitive state |1⟩:**
+```
+Alice: q0=0 q1=1 | Bob raw: 0 | Bob corrected: 1 | Count: 270
+Alice: q0=1 q1=1 | Bob raw: 0 | Bob corrected: 1 | Count: 261
+Alice: q0=0 q1=0 | Bob raw: 1 | Bob corrected: 1 | Count: 239
+Alice: q0=1 q1=0 | Bob raw: 1 | Bob corrected: 1 | Count: 230
+```
+Bob's corrected qubit is always 1 — teleportation successful.
+
+---
+
 ## Built With
 
 - Python 3.13
@@ -81,7 +146,6 @@ Eve detected! Key compromised. Abort!
 
 ## Upcoming Projects
 
-- Quantum Teleportation
 - Superdense Coding
 - Grover's Search Algorithm
 - QKD with Noise Simulation
