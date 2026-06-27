@@ -138,6 +138,72 @@ Bob's corrected qubit is always 1 — teleportation successful.
 
 ---
 
+## Superdense Coding Protocol
+
+A simulation of the Superdense Coding protocol — the inverse of quantum teleportation. Alice sends two classical bits of information to Bob by transmitting only one qubit, using a pre-shared entangled pair.
+
+### How It Works
+
+1. Alice and Bob share an **entangled Bell pair**
+2. Alice encodes her 2-bit message by applying gates to **her qubit only**:
+   - `00` → no gate (sends Φ⁺)
+   - `01` → X gate (sends Ψ⁺)
+   - `10` → Z gate (sends Φ⁻)
+   - `11` → X then Z (sends Ψ⁻)
+3. Alice sends her qubit to Bob
+4. Bob now has both qubits — he performs a **Bell measurement** (CNOT + H) to decode the 2-bit message
+
+### Why It Works
+
+The four Bell states are mutually orthogonal — perfectly distinguishable through measurement. Each encoding gate transforms the shared Bell state into a different one, and Bob's Bell measurement reveals exactly which one Alice created.
+
+### Security
+
+An eavesdropper intercepting Alice's qubit gains no useful information without Bob's half of the entangled pair. The intercepted qubit alone appears completely random.
+
+### Features
+
+- User-defined 2-bit message input
+- All four Bell state encodings (00, 01, 10, 11)
+- 100% accurate transmission across all cases
+- Circuit visualization
+
+### Files
+
+| File | Description |
+|------|-------------|
+| `Superdense_Coding.ipynb` | Jupyter Notebook with full explanation and simulation |
+| `superdense_coding.py` | Standalone Python script |
+| `run_superdense.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
+
+### Quick Start
+
+**Option 1: Jupyter Notebook**
+```
+pip install qiskit qiskit-aer
+jupyter notebook Superdense_Coding.ipynb
+```
+
+**Option 2: Command Line**
+```
+pip install qiskit qiskit-aer
+python superdense_coding.py
+```
+
+**Option 3: One-Click (Windows)**
+
+Download `superdense_coding.py` and `run_superdense.bat` into the same folder, then double-click `run_superdense.bat`.
+
+### Sample Output
+
+```
+Alice sent: 10
+Bob received: 10
+Shots: 1000/1000
+```
+
+---
+
 ## Built With
 
 - Python 3.13
@@ -146,7 +212,6 @@ Bob's corrected qubit is always 1 — teleportation successful.
 
 ## Upcoming Projects
 
-- Superdense Coding
 - Grover's Search Algorithm
 - QKD with Noise Simulation
 
