@@ -180,7 +180,7 @@ A simulation of Grover's quantum search algorithm demonstrating quadratic speedu
 
 | File | Description |
 |------|-------------|
-| `Grovers_Algorithm.ipynb` | Jupyter Notebook with explanation and progressive examples |
+| `Grovers Algorithm-Fundamentals.ipynb` | Jupyter Notebook with explanation and progressive examples |
 | `grovers_algorithm.py` | Standalone Python script |
 | `run_grovers.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
 
@@ -226,7 +226,7 @@ This demonstrates why quantum computers threaten classical password security. A 
 
 | File | Description |
 |------|-------------|
-| `Quantum_Password_Cracker.ipynb` | Jupyter Notebook with full explanation |
+| `Quantum Password Cracker.ipynb` | Jupyter Notebook with full explanation |
 | `quantum_password_cracker.py` | Standalone Python script |
 | `run_password_cracker.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
 
