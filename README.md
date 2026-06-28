@@ -1,6 +1,6 @@
 # Quantum Communications Projects
 
-A collection of quantum communication protocol simulations built from scratch using Qiskit, as part of my journey into Quantum Communications, Networks, and Computing.
+A collection of quantum communication and computing protocol simulations built from scratch using Qiskit, as part of my journey into Quantum Communications, Networks, and Computing.
 
 ---
 
@@ -36,24 +36,6 @@ A simulation of the BB84 QKD protocol, first introduced by Bennett and Brassard 
 | `BB84_Protocol.ipynb` | Jupyter Notebook with full explanation and simulation |
 | `bb84_protocol.py` | Standalone Python script |
 | `run_bb84.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
-
-### Quick Start
-
-**Option 1: Jupyter Notebook**
-```
-pip install qiskit qiskit-aer
-jupyter notebook BB84_Protocol.ipynb
-```
-
-**Option 2: Command Line**
-```
-pip install qiskit qiskit-aer
-python bb84_protocol.py
-```
-
-**Option 3: One-Click (Windows)**
-
-Download `bb84_protocol.py` and `run_bb84.bat` into the same folder, then double-click `run_bb84.bat`. It installs dependencies automatically and runs the simulation.
 
 ### Sample Output
 
@@ -107,24 +89,6 @@ A simulation of the Quantum Teleportation protocol, which allows Alice to transf
 | `quantum_teleportation.py` | Standalone Python script |
 | `run_teleportation.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
 
-### Quick Start
-
-**Option 1: Jupyter Notebook**
-```
-pip install qiskit qiskit-aer
-jupyter notebook Quantum_Teleportation.ipynb
-```
-
-**Option 2: Command Line**
-```
-pip install qiskit qiskit-aer
-python quantum_teleportation.py
-```
-
-**Option 3: One-Click (Windows)**
-
-Download `quantum_teleportation.py` and `run_teleportation.bat` into the same folder, then double-click `run_teleportation.bat`.
-
 ### Sample Output
 
 **Teleporting definitive state |1⟩:**
@@ -176,24 +140,6 @@ An eavesdropper intercepting Alice's qubit gains no useful information without B
 | `superdense_coding.py` | Standalone Python script |
 | `run_superdense.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
 
-### Quick Start
-
-**Option 1: Jupyter Notebook**
-```
-pip install qiskit qiskit-aer
-jupyter notebook Superdense_Coding.ipynb
-```
-
-**Option 2: Command Line**
-```
-pip install qiskit qiskit-aer
-python superdense_coding.py
-```
-
-**Option 3: One-Click (Windows)**
-
-Download `superdense_coding.py` and `run_superdense.bat` into the same folder, then double-click `run_superdense.bat`.
-
 ### Sample Output
 
 ```
@@ -204,16 +150,131 @@ Shots: 1000/1000
 
 ---
 
+## Grover's Search Algorithm
+
+A simulation of Grover's quantum search algorithm demonstrating quadratic speedup over classical search. Includes both 2-qubit (4 states) and 3-qubit (8 states) implementations with automatic optimal iteration calculation.
+
+### How It Works
+
+1. All qubits are put into **equal superposition** using Hadamard gates
+2. The **Oracle** marks the target state by flipping its phase
+3. The **Diffuser** amplifies the marked state's probability by reflecting amplitudes around the mean
+4. Steps 2-3 repeat for approximately **π/4 × √N** iterations
+5. Measurement yields the target with high probability
+
+### Key Concepts
+
+- Quadratic speedup: O(√N) vs classical O(N)
+- Amplitude amplification through phase manipulation
+- Optimal iteration count is critical — too many iterations cause probability collapse
+- Oracle design using X-wrapping and multi-controlled Z gates
+
+### Features
+
+- 2-qubit search (4 states, 1 iteration, ~100% accuracy)
+- 3-qubit search (8 states, 2 iterations, ~94% accuracy)
+- Automatic optimal iteration calculation
+- Scalable oracle and diffuser design
+
+### Files
+
+| File | Description |
+|------|-------------|
+| `Grovers_Algorithm.ipynb` | Jupyter Notebook with explanation and progressive examples |
+| `grovers_algorithm.py` | Standalone Python script |
+| `run_grovers.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
+
+### Sample Output
+
+```
+Target state:     |111>
+Grover's found:   |111>
+Success rate:     941/1000
+Iterations used:  2
+Search space:     8 states
+Quantum speedup:  8:2
+```
+
+---
+
+## Quantum Password Cracker
+
+A real-world application of Grover's algorithm that cracks numeric passwords by exploiting quantum speedup. The user enters a secret numeric password, and the program demonstrates how a quantum computer would find it quadratically faster than classical brute-force.
+
+### How It Works
+
+1. User enters a **numeric password** (hidden input)
+2. The password is converted to **binary representation**
+3. The binary length determines the number of **qubits** needed
+4. **Grover's algorithm** searches the space of all possible passwords
+5. The cracked password is converted back to a **number** and displayed
+
+### Security Implications
+
+This demonstrates why quantum computers threaten classical password security. A password that would take a classical computer up to N guesses can be cracked in √N quantum iterations. This is directly relevant to post-quantum cryptography research.
+
+### Features
+
+- Accepts any numeric password
+- Automatic binary conversion and circuit scaling
+- Hidden password input using getpass
+- Classical vs quantum comparison with speedup ratio
+- Safety limit for simulator (max 15 qubits)
+- Most-frequent-result selection for robustness
+
+### Files
+
+| File | Description |
+|------|-------------|
+| `Quantum_Password_Cracker.ipynb` | Jupyter Notebook with full explanation |
+| `quantum_password_cracker.py` | Standalone Python script |
+| `run_password_cracker.bat` | Windows batch file — auto-installs dependencies and runs the simulation |
+
+### Sample Output
+
+```
+=============================================
+  QUANTUM PASSWORD CRACKER
+=============================================
+  Secret password:     234
+  Binary:              11101010
+  Cracked binary:      11101010
+  Cracked password:    234
+  Match:               Yes
+  Classical checks:    up to 256
+  Grover iterations:   12
+  Quantum speedup:     256:12
+=============================================
+```
+
+---
+
+## Quick Start (All Projects)
+
+**Requirements:** Python 3.11+ and pip
+
+**Option 1: Jupyter Notebook**
+```
+pip install qiskit qiskit-aer
+jupyter notebook
+```
+Then open any `.ipynb` file.
+
+**Option 2: Command Line**
+```
+pip install qiskit qiskit-aer
+python <script_name>.py
+```
+
+**Option 3: One-Click (Windows)**
+
+Download any project's `.py` and `.bat` files into the same folder, then double-click the `.bat` file. Dependencies install automatically.
+
 ## Built With
 
 - Python 3.13
 - Qiskit 2.4.1
 - Qiskit Aer (simulator)
-
-## Upcoming Projects
-
-- Grover's Search Algorithm
-- QKD with Noise Simulation
 
 ## Author
 
