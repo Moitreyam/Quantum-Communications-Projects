@@ -249,6 +249,67 @@ This demonstrates why quantum computers threaten classical password security. A 
 
 ---
 
+## Satellite QKD Mission Planning Tool
+
+An interactive Streamlit dashboard for simulating a **decoy-state BB84** satellite-to-ground free-space quantum key distribution link. This goes beyond static analysis — it is a functioning, real-time mission planning tool where every parameter can be tuned and the entire link budget, error rates, and key generation metrics update instantly.
+
+### Physics Model
+
+- **Gaussian beam diffraction** — geometric collection efficiency as a function of beam waist, slant range, and telescope aperture
+- **Beer-Lambert atmospheric absorption** — slant-path transmittance scaling with elevation angle
+- **Detector model** — dark count noise and misalignment errors contributing to QBER
+- **Ma/Lo decoy-state estimation** — lower bound on single-photon gain Q₁ and upper bound on single-photon error rate e₁ using signal (μ) and decoy (ν) intensities
+- **GLLP secure key rate** — bits per pulse after privacy amplification and error correction
+- **LEO orbital geometry** — slant range calculation and symmetric pass integration from 10° minimum elevation
+
+### Features
+
+- **Real-time parameter tuning** via sidebar sliders:
+  - Orbit altitude (200–2000 km), elevation angle (10°–90°)
+  - Beam waist, wavelength (785 / 850 / 1550 nm), telescope radius
+  - Atmospheric transmittance, optics efficiency, detector efficiency
+  - Dark count rate, misalignment error
+  - Signal and decoy intensities, error correction factor
+  - Pulse rate (10–1000 MHz)
+- **Link budget dashboard** — slant range, total loss (dB), QBER, secure key rate
+- **Loss breakdown** — geometric, atmospheric, and optics losses displayed separately
+- **Three money plots** with live operating-point markers:
+  1. QBER vs channel loss (with BB84 11% threshold line)
+  2. Secure key rate vs channel loss (log scale)
+  3. Secret key bits per LEO pass vs maximum elevation angle
+- **Mission summary** — key per pass (Mbits), daily key yield, AES-256 keys per day, voice encryption hours
+- **Pass/fail assessment** — instant feedback on whether the system can generate secure key
+
+### Files
+
+| File | Description |
+|------|-------------|
+| `satellite_qkd_planner.py` | Streamlit interactive dashboard |
+| `run_satellite_qkd.bat` | Windows batch file — auto-installs dependencies and launches the dashboard |
+
+### Quick Start
+
+```
+pip install numpy matplotlib streamlit
+streamlit run satellite_qkd_planner.py
+```
+
+Or double-click `run_satellite_qkd.bat` on Windows.
+
+### Sample Metrics (Default Parameters)
+
+| Metric | Value |
+|--------|-------|
+| Orbit altitude | 500 km |
+| Elevation angle | 30° |
+| Slant range | ~1,000 km |
+| Total channel loss | ~35 dB |
+| QBER | < 5% |
+| Key per pass | ~36 Mbits |
+| AES-256 keys/day | ~560,000+ |
+
+---
+
 ## Quick Start (All Projects)
 
 **Requirements:** Python 3.11+ and pip
@@ -275,6 +336,8 @@ Download any project's `.py` and `.bat` files into the same folder, then double-
 - Python 3.13
 - Qiskit 2.4.1
 - Qiskit Aer (simulator)
+- NumPy · Matplotlib · Streamlit (Satellite QKD Planner)
+- [Anthropic Claude Code](https://claude.com/claude-code) — used as a mentorship and development aid
 
 ## Author
 
